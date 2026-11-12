@@ -1,0 +1,78 @@
+<idea-plugin>
+    <id>com.ventus.apisearch</id>
+    <name>API Search</name>
+    <vendor>Ventus</vendor>
+
+    <description><![CDATA[
+        在 IDEA 中快速搜索 Spring MVC / Spring Boot、JAX-RS、Feign 与 Gateway 接口。
+        支持按 URL、方法名、注释检索；在 Controller 方法上右键可复制路径、完整 URL、cURL、
+        示例 JSON，端口按模块配置自动解析。
+    ]]></description>
+
+    <resource-bundle>messages.ApiSearchBundle</resource-bundle>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileBasedIndex implementation="com.ventus.apisearch.index.ApiEndpointIndex"/>
+
+        <applicationService
+                serviceImplementation="com.ventus.apisearch.settings.ApiSearchSettings"/>
+
+        <projectConfigurable
+                instance="com.ventus.apisearch.settings.ApiSearchConfigurable"
+                id="com.ventus.apisearch.settings"
+                displayName="API Search"
+                parentId="tools"/>
+
+        <notificationGroup id="ApiSearch" displayType="BALLOON"/>
+
+        <toolWindow id="REST Services"
+                    anchor="right"
+                    icon="/icons/url.svg"
+                    factoryClass="com.ventus.apisearch.ui.ApiSearchToolWindowFactory"/>
+    </extensions>
+
+    <!-- 显式声明同时兼容 Kotlin 插件的 K1 / K2 模式，否则 K2 模式下插件会被拒绝加载 -->
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK1="true" supportsK2="true"/>
+    </extensions>
+
+    <actions>
+        <action id="ApiSearch.SearchApi"
+                class="com.ventus.apisearch.actions.SearchApiAction"
+                text="SearchApi"
+                description="Search project REST APIs">
+            <keyboard-shortcut keymap="$default" first-keystroke="alt QUOTE"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+
+        <!-- action 必须先于 group 定义，否则 <reference> 会报“not registered” -->
+        <action id="ApiSearch.CopyPath"
+                class="com.ventus.apisearch.actions.CopyPathAction"
+                text="Copy as URL"/>
+        <action id="ApiSearch.CopyUrl"
+                class="com.ventus.apisearch.actions.CopyUrlAction"
+                text="Copy as Full URL"/>
+        <action id="ApiSearch.CopyCurl"
+                class="com.ventus.apisearch.actions.CopyCurlAction"
+                text="Copy as cURL"/>
+        <action id="ApiSearch.CopyJson"
+                class="com.ventus.apisearch.actions.CopyJsonAction"
+                text="Copy as JSON"/>
+        <action id="ApiSearch.CopyOpenInBrowser"
+                class="com.ventus.apisearch.actions.OpenInBrowserAction"
+                text="Open in Browser"/>
+
+        <group id="ApiSearch.EditorMenu" text="SearchApi" popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <reference ref="ApiSearch.CopyPath"/>
+            <reference ref="ApiSearch.CopyUrl"/>
+            <reference ref="ApiSearch.CopyCurl"/>
+            <reference ref="ApiSearch.CopyJson"/>
+            <separator/>
+            <reference ref="ApiSearch.CopyOpenInBrowser"/>
+        </group>
+    </actions>
+</idea-plugin>
