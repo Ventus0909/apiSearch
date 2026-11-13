@@ -23,7 +23,7 @@ class ApiEndpointIndex : FileBasedIndexExtension<String, List<ApiEndpoint>>() {
     companion object {
         const val NAME_ID = "com.ventus.apisearch.endpoints"
         const val FILE_KEY = "endpoints"
-        private const val VERSION = 3
+        private const val VERSION = 4
 
         val INDEX_ID: ID<String, List<ApiEndpoint>> = ID.create(NAME_ID)
     }

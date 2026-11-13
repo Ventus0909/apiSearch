@@ -1,8 +1,10 @@
 package com.ventus.apisearch.parsing
 
+import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiAnnotationMemberValue
 import com.intellij.psi.PsiArrayInitializerMemberValue
+import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiLiteralExpression
 import org.jetbrains.kotlin.psi.KtAnnotationEntry
 import org.jetbrains.kotlin.psi.KtCollectionLiteralExpression
@@ -55,10 +57,20 @@ object AnnotationValues {
         when (value) {
             is PsiLiteralExpression -> (value.value as? String)?.let(out::add)
             is PsiArrayInitializerMemberValue -> value.initializers.forEach { collectJava(it, out) }
-            else -> {
-                val text = value?.text
-                if (text != null && text.length >= 2 && text.startsWith("\"") && text.endsWith("\"")) {
-                    out.add(text.substring(1, text.length - 1))
+            is PsiExpression -> {
+                // 支持常量表达式：RiskApiPaths.ADMIN_PREFIX + "/batch"
+                val constant = runCatching {
+                    JavaPsiFacade.getInstance(value.project)
+                        .constantEvaluationHelper
+                        .computeConstantExpression(value) as? String
+                }.getOrNull()
+                if (!constant.isNullOrBlank()) {
+                    out.add(constant)
+                } else {
+                    val text = value.text
+                    if (text.length >= 2 && text.startsWith("\"") && text.endsWith("\"")) {
+                        out.add(text.substring(1, text.length - 1))
+                    }
                 }
             }
         }

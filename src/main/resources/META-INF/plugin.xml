@@ -70,19 +70,19 @@
         <!-- action 必须先于 group 定义，否则 <reference> 会报“not registered” -->
         <action id="ApiSearch.CopyPath"
                 class="com.ventus.apisearch.actions.CopyPathAction"
-                text="Copy as URL"/>
+                text="&amp;1. Copy as URL"/>
         <action id="ApiSearch.CopyUrl"
                 class="com.ventus.apisearch.actions.CopyUrlAction"
-                text="Copy as Full URL"/>
+                text="&amp;2. Copy as Full URL"/>
         <action id="ApiSearch.CopyCurl"
                 class="com.ventus.apisearch.actions.CopyCurlAction"
-                text="Copy as cURL"/>
+                text="&amp;3. Copy as cURL"/>
         <action id="ApiSearch.CopyJson"
                 class="com.ventus.apisearch.actions.CopyJsonAction"
-                text="Copy as JSON"/>
+                text="&amp;4. Copy as JSON"/>
         <action id="ApiSearch.CopyOpenInBrowser"
                 class="com.ventus.apisearch.actions.OpenInBrowserAction"
-                text="Open in Browser"/>
+                text="&amp;5. Open in Browser"/>
 
         <group id="ApiSearch.EditorMenu" text="SearchApi" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
