@@ -95,6 +95,10 @@ gradle runIde
 
 首次构建会下载 IntelliJ IDEA Community 2025.1 平台 SDK。
 
+## 许可证
+
+MIT License，详见 [LICENSE](LICENSE)。
+
 ## 技术栈
 
 - Kotlin 2.1

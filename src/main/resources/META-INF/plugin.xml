@@ -1,13 +1,32 @@
 <idea-plugin>
     <id>com.ventus.apisearch</id>
     <name>API Search</name>
-    <vendor>Ventus</vendor>
+    <vendor url="https://github.com/Ventus0909" email="1020575774@qq.com">Ventus</vendor>
 
     <description><![CDATA[
-        在 IDEA 中快速搜索 Spring MVC / Spring Boot、JAX-RS、Feign 与 Gateway 接口。
-        支持按 URL、方法名、注释检索；在 Controller 方法上右键可复制路径、完整 URL、cURL、
-        示例 JSON，端口按模块配置自动解析。
+        API Search is an IntelliJ IDEA plugin for searching Spring MVC / Spring Boot, JAX-RS, Feign and Spring Cloud Gateway endpoints. It supports fuzzy search by URL, method name and comments, a REST Services sidebar with module and HTTP method filters, and copy URL / cURL / JSON actions with automatic module port resolution.
+
+        Usage:
+        1. Press Alt+' (configurable in Keymap) to open the API search popup. Type a URL, method name or comment; use the "Only this module" checkbox and HTTP method filter to narrow results.
+        2. Right-click a Controller method and choose SearchApi to copy URL, full URL, cURL or JSON.
+        3. Open the "REST Services" tool window on the right for a browsable list with filters, cell copy and column configuration.
+        4. Ports are resolved from Run/Debug configuration or the module's application.yml/properties; override them in Settings > Tools > API Search.
+
+        中文说明：
+        API Search 是一款 IntelliJ IDEA 插件，用于搜索 Spring MVC / Spring Boot、JAX-RS、Feign 与 Spring Cloud Gateway 接口。支持按 URL、方法名、注释模糊检索，右侧提供 REST Services 侧边栏（模块/HTTP 方法筛选、单元格复制、列配置），并可复制 URL、完整 URL、cURL、示例 JSON，端口按模块配置自动解析。
+
+        使用方法：
+        1. 按 Alt+'（可在 Keymap 修改）打开搜索弹窗，输入 URL、方法名或注释；可勾选 Only this module、选择 HTTP 方法筛选。
+        2. 在 Controller 方法上右键 SearchApi，复制 URL / 完整 URL / cURL / JSON。
+        3. 打开右侧 REST Services 侧边栏浏览、筛选、复制单元格。
+        4. 端口优先读取 Run/Debug 配置，其次 application.yml/properties；可在 Settings > Tools > API Search 中覆写。
     ]]></description>
+
+    <change-notes><![CDATA[
+        <ul>
+            <li>0.1.0: 初始版本，支持 Spring MVC / JAX-RS / Feign / Gateway 接口搜索、侧边栏筛选、复制 URL / cURL / JSON。</li>
+        </ul>
+    ]]></change-notes>
 
     <resource-bundle>messages.ApiSearchBundle</resource-bundle>
 
