@@ -36,11 +36,11 @@ intellijPlatform {
 
     pluginConfiguration {
         id = "com.ventus.apisearch"
-        name = "API Search"
+        name = "Ventus API Search"
         version = project.version.toString()
 
         description = """
-            API Search is an IntelliJ IDEA plugin for searching Spring MVC / Spring Boot, JAX-RS, Feign and Spring Cloud Gateway endpoints. It supports fuzzy search by URL, method name and comments, a REST Services sidebar with module and HTTP method filters, and copy URL / cURL / JSON actions with automatic module port resolution.
+            Ventus API Search is an IntelliJ IDEA plugin for searching Spring MVC / Spring Boot, JAX-RS, Feign and Spring Cloud Gateway endpoints. It supports fuzzy search by URL, method name and comments, a REST Services sidebar with module and HTTP method filters, and copy URL / cURL / JSON actions with automatic module port resolution.
 
             Usage:
             1. Press Alt+' (configurable in Keymap) to open the API search popup. Type a URL, method name or comment; use the "Only this module" checkbox and HTTP method filter to narrow results.

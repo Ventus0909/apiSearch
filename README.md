@@ -1,4 +1,4 @@
-# API Search
+# Ventus API Search
 
 IntelliJ IDEA 插件：在项目中搜索 Spring MVC / Spring Boot、JAX-RS、Feign、Spring Cloud Gateway 接口，并复制 URL、cURL、示例 JSON。
 
